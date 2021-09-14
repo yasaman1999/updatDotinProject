@@ -48,9 +48,8 @@ public class LoanFileManagmentControllerServlet extends HttpServlet {
 		
 			HttpSession session = request.getSession();
 			session.setAttribute("loanFiles", loanFiles);
-			/*request.setAttribute("loanFiles", loanFiles);
-			request.setAttribute("customerNumber", customerNumber);
-			request.getRequestDispatcher("loan-file-managment.jsp").forward(request, response);*/
+			
+			request.getRequestDispatcher("loan-file-managment.jsp").forward(request, response);
 			
 			
 		}

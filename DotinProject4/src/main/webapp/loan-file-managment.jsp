@@ -109,15 +109,16 @@ function deleteValue(){
 				</thead>
 				<tbody>
 					<%	if (loanFiles == null){}
+					
 					else{
 						
 						for (int i = 0; i < loanFiles.size(); i++) {
 					%>
 					<tr>
-						<td><%=((LoanFile) loanFiles.get(i)).getState() %></td>
-						<td><%=((LoanFile) loanFiles.get(i)).getContractPeriod() %></td>
-						<td><%=((LoanFile) loanFiles.get(i)).getAmount()%></td>
-						<td><%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber() %></td>
+						<td><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getState() %></td>
+						<td><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getContractPeriod() %></td>
+						<td><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getAmount()%></td>
+						<td><a href="detail.jsp" ><%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%></td>
 					</tr>
 					<%
 						}
