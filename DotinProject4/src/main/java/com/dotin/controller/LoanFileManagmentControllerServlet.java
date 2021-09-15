@@ -46,6 +46,8 @@ public class LoanFileManagmentControllerServlet extends HttpServlet {
 			
 			}
 		
+			
+		
 			HttpSession session = request.getSession();
 			session.setAttribute("loanFiles", loanFiles);
 			

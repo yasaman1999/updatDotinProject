@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.dotin.bean.LoanFile" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="com.dotin.bean.LoanFile"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
+<meta http-equiv="Content-Type"
+	content="text/html; charset=windows-1256">
 <title>Insert title here</title>
 <style>
 * {
@@ -82,52 +83,60 @@ table.table2 th {
 }
 </style>
 <script type="text/javascript">
-function deleteValue(){
-	
-	document.getElementById("n1").defaultValue = 0;
-	document.getElementById("n2").defaultValue = 0;
-	document.getElementById("n3").defaultValue = 0;
-	document.getElementById("n4").defaultValue = 0;
-	document.getElementById("n5").defaultValue = 0;
-}
+	function deleteValue() {
+
+		document.getElementById("n1").defaultValue = 0;
+		document.getElementById("n2").defaultValue = 0;
+		document.getElementById("n3").defaultValue = 0;
+		document.getElementById("n4").defaultValue = 0;
+		document.getElementById("n5").defaultValue = 0;
+	}
 </script>
 <body background="background.jpg"
 	; style="background-repeat: no-repeat; background-size: cover; padding-top: 50px;">
-	<%List loanFiles = (ArrayList) session.getAttribute("loanFiles"); %>
+	<%
+		List loanFiles = (ArrayList) session.getAttribute("loanFiles");
+	%>
+	<div>
+		<a href="loan-file.jsp"> <input type="submit" value="تشکیل پرونده"
+			size="120"
+			style="text-align: center; font-family: courier; margin-left: 20%">
+		</a>
+	</div>
 	<div class="row">
-		<div class="column2" style="overflow-y: scroll; text-align: center">
-		<form action="choose" method="get">
-			<table class="table2" id="newTable" style="overflow-y: scroll">
-				<thead>
-					<tr>
-						<th>وضعیت</th>
-						<th>دوره</th>
-						<th>مبلغ</th>
-						<th>شماره مشتری</th>
+		<div class="column2"
+			style="overflow-y: scroll; text-align: center; padding-top: 7%">
+			<form action="choose" method="get">
+				<table class="table2" id="newTable" style="overflow-y: scroll">
+					<thead>
+						<tr>
+							<th>دوره</th>
+							<th>مبلغ</th>
+							<th>شماره مشتری</th>
+							<th>ردیف</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							if (loanFiles == null) {
+							}
 
-					</tr>
-				</thead>
-				<tbody>
-					<%	if (loanFiles == null){}
-					
-					else{
-						
-						for (int i = 0; i < loanFiles.size(); i++) {
-					%>
-					<tr>
-						<td><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getState() %></td>
-						<td><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getContractPeriod() %></td>
-						<td><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getAmount()%></td>
-						<td><a href="detail.jsp" ><%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%></td>
-					</tr>
-					<%
-						}
-					}
-					
-					%>
+							else {
 
-				</tbody>
-			</table>
+								for (int i = 0; i < loanFiles.size(); i++) {
+						%>
+						<tr>
+							<td id="1"><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getContractPeriod()%></a></td>
+							<td id="2"><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getAmount()%></a></td>
+							<td id="3"><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%></a></td>
+							<td id="4"><%=i + 1%></td>
+						</tr>
+						<%
+							}
+							}
+						%>
+					</tbody>
+				</table>
 			</form>
 		</div>
 
@@ -169,10 +178,5 @@ function deleteValue(){
 		</form>
 	</div>
 	</div>
-
-
-
-
-
 </body>
 </html>
