@@ -86,6 +86,40 @@ public class LoanFileDao {
 			session.close();
 		}
 	}
+	public LoanFile loanFileDetail(Integer customerNumber,Integer amount,Integer contractPeriod) {
+		Session session = HibernateManager.openSession();
+		try {
+			
+			String queryStr = "select loanFile from LoanFile loanFile where 1=1";
+			
+	        if(customerNumber != null) {
+	        	queryStr = queryStr.concat(" and loanFile.customer.customerNumber = :customerNumber");	
+	        }
+	        if(amount != null) {
+	        	queryStr = queryStr.concat(" and loanFile.amount = :amount");	
+	        }
+	        if(contractPeriod != null) {
+	        	queryStr = queryStr.concat(" and loanFile.amount = :contractPeriod");	
+	        }
+	        
+			Query q = session.createQuery(queryStr);
+			 if(customerNumber != 0) {
+				 q.setParameter("customerNumber", customerNumber);
+		        }
+			 if(amount != 0) {
+				 q.setParameter("loanAmountFrom", amount);	
+		        }
+			 if(contractPeriod != 0) {
+				 q.setParameter("loanAmountFrom", contractPeriod);	
+		        }
+			
+		
+			LoanFile loanFileDetail = (LoanFile) q.uniqueResult();
+			return  loanFileDetail ;
+		} finally {
+			session.close();
+		}
+	}
 	
 	}
 

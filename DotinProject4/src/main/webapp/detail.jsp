@@ -8,5 +8,32 @@
 </head>
 <body>
 <h1>hellooo</h1>
+<form action="showDetail">
+<%
+int contractPeriod;
+int amount;
+int customerNumber;
+if(request.getParameter("contractPeriod") != null){
+	contractPeriod= Integer.parseInt(request.getParameter("contractPeriod"));
+	out.print(contractPeriod);
+	request.setAttribute("contractPeriod", contractPeriod);
+	
+}
+if(request.getParameter("amount") != null){
+	 amount= Integer.parseInt(request.getParameter("amount"));
+	 request.setAttribute("amount", amount);
+	
+}
+if(request.getParameter("customerNumber") != null){
+	 customerNumber= Integer.parseInt(request.getParameter("customerNumber"));
+	 request.setAttribute("customerNumber", customerNumber);
+	
+}
+LoanFileDao loanFileDao = LoanFileDao.getInstance();
+LoanFile loanFilesList = (LoanFile) loanFileDao.loanFileDetail(customerNumber,amount,contractPeriod);
+
+
+%>
+</form>
 </body>
 </html>

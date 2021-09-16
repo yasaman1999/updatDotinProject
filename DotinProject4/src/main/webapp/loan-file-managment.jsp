@@ -126,10 +126,10 @@ table.table2 th {
 								for (int i = 0; i < loanFiles.size(); i++) {
 						%>
 						<tr>
-							<td id="1"><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getContractPeriod()%></a></td>
-							<td id="2"><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getAmount()%></a></td>
-							<td id="3"><a href="detail.jsp"><%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%></a></td>
-							<td id="4"><%=i + 1%></td>
+							<td><a href="detail.jsp?contractPeriod=<%=((LoanFile) loanFiles.get(i)).getContractPeriod()%>"><%=((LoanFile) loanFiles.get(i)).getContractPeriod()%></a></td>
+							<td><a href="detail.jsp?amount=<%=((LoanFile) loanFiles.get(i)).getAmount()%>"><%=((LoanFile) loanFiles.get(i)).getAmount()%></a></td>
+							<td><a href="detail.jsp?customerNumber=<%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%>"><%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%></a></td>
+							<td><%=i + 1%></td>
 						</tr>
 						<%
 							}
