@@ -110,6 +110,7 @@ table.table2 th {
 				<table class="table2" id="newTable" style="overflow-y: scroll">
 					<thead>
 						<tr>
+							<th>...</th>
 							<th>دوره</th>
 							<th>مبلغ</th>
 							<th>شماره مشتری</th>
@@ -126,10 +127,15 @@ table.table2 th {
 								for (int i = 0; i < loanFiles.size(); i++) {
 						%>
 						<tr>
-							<td><a href="detail.jsp?contractPeriod=<%=((LoanFile) loanFiles.get(i)).getContractPeriod()%>"><%=((LoanFile) loanFiles.get(i)).getContractPeriod()%></a></td>
-							<td><a href="detail.jsp?amount=<%=((LoanFile) loanFiles.get(i)).getAmount()%>"><%=((LoanFile) loanFiles.get(i)).getAmount()%></a></td>
-							<td><a href="detail.jsp?customerNumber=<%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%>"><%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%></a></td>
+							
+							<td><a
+								href="detail.jsp?contractPeriod=<%=((LoanFile) loanFiles.get(i)).getContractPeriod()%>&amount=<%=((LoanFile) loanFiles.get(i)).getAmount()%>&customerNumber<%=((LoanFile) loanFiles.get(i)).getAmount()%>&customerNumber=<%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%>">انتخاب</a></td>
+							</td>
+							<td><%=((LoanFile) loanFiles.get(i)).getContractPeriod()%></td>
+							<td><%=((LoanFile) loanFiles.get(i)).getAmount()%></td>
+							<td><%=((LoanFile) loanFiles.get(i)).getCustomer().getCustomerNumber()%></td>
 							<td><%=i + 1%></td>
+
 						</tr>
 						<%
 							}

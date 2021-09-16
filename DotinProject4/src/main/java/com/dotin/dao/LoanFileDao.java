@@ -99,18 +99,18 @@ public class LoanFileDao {
 	        	queryStr = queryStr.concat(" and loanFile.amount = :amount");	
 	        }
 	        if(contractPeriod != null) {
-	        	queryStr = queryStr.concat(" and loanFile.amount = :contractPeriod");	
+	        	queryStr = queryStr.concat(" and loanFile.contractPeriod = :contractPeriod");	
 	        }
 	        
 			Query q = session.createQuery(queryStr);
-			 if(customerNumber != 0) {
+			 if(customerNumber != null) {
 				 q.setParameter("customerNumber", customerNumber);
 		        }
-			 if(amount != 0) {
-				 q.setParameter("loanAmountFrom", amount);	
+			 if(amount != null) {
+				 q.setParameter("amount", amount);	
 		        }
-			 if(contractPeriod != 0) {
-				 q.setParameter("loanAmountFrom", contractPeriod);	
+			 if(contractPeriod != null) {
+				 q.setParameter("contractPeriod", contractPeriod);	
 		        }
 			
 		
