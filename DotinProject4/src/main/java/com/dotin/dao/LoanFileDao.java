@@ -121,6 +121,21 @@ public class LoanFileDao {
 		}
 	}
 	
+	public void deleteLoanFile(LoanFile loanFile) {
+		Session session = HibernateManager.openSession();
+		try {
+			
+			String queryStr = "delete from LoanFile loanFile where loanFile = :loanFile";
+			Query q = session.createQuery(queryStr);
+			q.setParameter("loanFile", loanFile);
+			 int count3 = q.executeUpdate();
+
+		        System.out.println(count3 + " Record(s) Deleted.");
+			
+		} finally {
+			session.close();
+		}
+	}
 	}
 
 
