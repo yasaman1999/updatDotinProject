@@ -28,7 +28,7 @@ table.table2 {
 	top: 300px;
 	padding: 1px;
 	height: 195px;
-	width: 99.5%;
+	width: 95%;
 }
 table.table2 td {
 	color: black;
@@ -70,6 +70,8 @@ customerNumber= Integer.parseInt(request.getParameter("customerNumber"));
 
 LoanFileDao loanFileDao = LoanFileDao.getInstance();
 LoanFile loanFileDetail = (LoanFile) loanFileDao.loanFileDetail(customerNumber,amount,contractPeriod);
+ServletContext servletcontext = getServletContext();
+servletcontext.setAttribute("loanFileDetail", loanFileDetail);
 %>
 </form>
 <form action="deleteLoanFile" method="get">
@@ -99,11 +101,11 @@ LoanFile loanFileDetail = (LoanFile) loanFileDao.loanFileDetail(customerNumber,a
 						</tr>	
 					</tbody>
 				</table>
-				<%
-				LoanFile loanFile = loanFileDetail;
-				request.setAttribute("loanFile", loanFile);
+				<%-- <%
 				
-				%>
+				request.setAttribute("loanFileDetail", loanFileDetail);
+				
+				%> --%>
 				<br><br>
 				<input
 					type="submit" value="غیر فعالسازی  پرونده" size="70"

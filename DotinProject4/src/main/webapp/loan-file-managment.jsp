@@ -83,17 +83,45 @@ table.table2 th {
 }
 </style>
 <script type="text/javascript">
-	function deleteValue() {
 
-		document.getElementById("n1").defaultValue = 0;
-		document.getElementById("n2").defaultValue = 0;
-		document.getElementById("n3").defaultValue = 0;
-		document.getElementById("n4").defaultValue = 0;
-		document.getElementById("n5").defaultValue = 0;
+	function init() {
+<%Integer customerNumber = (Integer) request.getAttribute("customerNumber");
+			if (customerNumber != null && customerNumber != 0) {%>
+	document.getElementById("n1").value =
+<%=customerNumber%>	
+<%}%>
+			
+<%Integer loanAmountFrom = (Integer) request.getAttribute("loanAmountFrom");
+			if (loanAmountFrom != null && loanAmountFrom != 0) {%>
+	document.getElementById("n2").value =
+<%=loanAmountFrom%>
+	
+<%}%>
+
+<%Integer loanAmountTo = (Integer) request.getAttribute("loanAmountTo");
+			if (loanAmountTo != null && loanAmountTo != 0) {%>
+	document.getElementById("n3").value =
+<%=loanAmountTo%>
+	
+<%}%>
+
+<%Integer loanPeriodFrom = (Integer) request.getAttribute("loanPeriodFrom");
+			if (loanPeriodFrom != null && loanPeriodFrom != 0) {%>
+	document.getElementById("n4").value =
+<%=loanPeriodFrom%>
+	
+<%}%>
+
+<%Integer loanPeriodTo = (Integer) request.getAttribute("loanPeriodTo");
+			if (loanPeriodTo != null && loanPeriodTo != 0) {%>
+	document.getElementById("n5").value =
+<%=loanPeriodTo%>
+	
+<%}%>
 	}
 </script>
 <body background="background.jpg"
-	; style="background-repeat: no-repeat; background-size: cover; padding-top: 50px;">
+	; style="background-repeat: no-repeat; background-size: cover; padding-top: 50px"; onload="init()">
 	<%
 		List loanFiles = (ArrayList) session.getAttribute("loanFiles");
 	%>
@@ -105,7 +133,7 @@ table.table2 th {
 	</div>
 	<div class="row">
 		<div class="column2"
-			style="overflow-y: scroll; text-align: center; padding-top: 7%">
+			style=" text-align: center; padding-top: 7%">
 			<form action="choose" method="get">
 				<table class="table2" id="newTable" style="overflow-y: scroll">
 					<thead>
@@ -176,7 +204,7 @@ table.table2 th {
 					</tr>
 					<tr>
 						<td style="padding-top: 20px; padding-bottom: 10px"><input
-							type="submit" value="جستجو" size="120" onclick="deleteValue()"
+							type="submit" value="جستجو" size="120" 
 							style="text-align: center; font-family: courier; margin-left: 90%">
 						</td>
 					</tr>

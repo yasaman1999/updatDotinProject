@@ -79,8 +79,9 @@ public class LoanFileDao {
 			 if(loanPeriodTo != 0) {
 				 q.setParameter("loanPeriodTo", loanPeriodTo);	
 		        }
-		
+			 
 			List<LoanFile> loanFiles = q.list();
+			
 			return  loanFiles;
 		} finally {
 			session.close();
@@ -121,21 +122,25 @@ public class LoanFileDao {
 		}
 	}
 	
-	public void deleteLoanFile(LoanFile loanFile) {
+	public void deleteLoanFile(int i) {
 		Session session = HibernateManager.openSession();
+	
 		try {
+			Transaction transaction = session.beginTransaction();
 			
-			String queryStr = "delete from LoanFile loanFile where loanFile = :loanFile";
+			String queryStr = "delete from LoanFile loanFile where loanFile.id = :i";
 			Query q = session.createQuery(queryStr);
-			q.setParameter("loanFile", loanFile);
-			 int count3 = q.executeUpdate();
-
-		        System.out.println(count3 + " Record(s) Deleted.");
-			
+			q.setParameter("i", i);
+			int count = q.executeUpdate();
+			System.out.println(count + " Record(s) Deleted.");
+			transaction.commit();
+		       
 		} finally {
+			
 			session.close();
 		}
 	}
+	
 	}
 
 

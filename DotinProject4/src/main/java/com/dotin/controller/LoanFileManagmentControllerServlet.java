@@ -25,12 +25,26 @@ public class LoanFileManagmentControllerServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		int customerNumber = Integer.parseInt(request.getParameter("customerNumber"));
-		int loanAmountFrom = Integer.parseInt(request.getParameter("loanAmountFrom"));
-		int loanAmountTo = Integer.parseInt(request.getParameter("loanAmountTo"));
-		int loanPeriodFrom = Integer.parseInt(request.getParameter("loanPeriodFrom"));
-		int loanPeriodTo = Integer.parseInt(request.getParameter("loanPeriodTo"));
+		int customerNumber=0;
+		int loanAmountFrom=0;
+		int loanAmountTo=0;
+		int loanPeriodFrom=0;
+		int loanPeriodTo=0;
+		if(request.getParameter("customerNumber") != "") {
+		 customerNumber = Integer.parseInt(request.getParameter("customerNumber"));
+		}
+		if(request.getParameter("loanAmountFrom") != "") {
+		 loanAmountFrom = Integer.parseInt(request.getParameter("loanAmountFrom"));
+		}
+		if(request.getParameter("loanAmountTo") != "") {
+		 loanAmountTo = Integer.parseInt(request.getParameter("loanAmountTo"));
+		}
+		if(request.getParameter("loanPeriodFrom") != "") {
+		 loanPeriodFrom = Integer.parseInt(request.getParameter("loanPeriodFrom"));
+		}
+		if(request.getParameter("loanPeriodTo") != "") {
+		 loanPeriodTo = Integer.parseInt(request.getParameter("loanPeriodTo"));
+		}
 		
 	
 		
@@ -41,16 +55,18 @@ public class LoanFileManagmentControllerServlet extends HttpServlet {
 		if(loanFilesList != null) {
 		for(int i=0;i < loanFilesList.size();i++) {
 				loanFiles.add(loanFilesList.get(i));
-				System.out.print(loanFiles.get(i).getState() + "helloooooooooo");
+				
 				
 			
 			}
 		
-			
-		
 			HttpSession session = request.getSession();
 			session.setAttribute("loanFiles", loanFiles);
-			
+			request.setAttribute("customerNumber", customerNumber);
+			request.setAttribute("loanAmountFrom", loanAmountFrom);
+			request.setAttribute("loanAmountTo", loanAmountTo);
+			request.setAttribute("loanPeriodFrom", loanPeriodFrom);
+			request.setAttribute("loanPeriodTo", loanPeriodTo);
 			request.getRequestDispatcher("loan-file-managment.jsp").forward(request, response);
 			
 			

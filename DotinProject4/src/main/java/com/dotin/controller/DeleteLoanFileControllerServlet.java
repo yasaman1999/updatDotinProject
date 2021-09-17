@@ -1,6 +1,8 @@
 package com.dotin.controller;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +17,12 @@ import com.dotin.dao.LoanFileDao;
 public class DeleteLoanFileControllerServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LoanFile loanFile = (LoanFile) request.getAttribute("loanFile");
+		ServletContext servletcontext = getServletContext();
+		LoanFile loanFile =(LoanFile) servletcontext.getAttribute("loanFileDetail");
+		int i = loanFile.getId();
 		LoanFileDao loanFileDao = LoanFileDao.getInstance();
-		loanFileDao.deleteLoanFile(loanFile);
+		loanFileDao.deleteLoanFile(i);
+		
 		
 	}
 
