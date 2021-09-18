@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.dotin.bean.LoanFile;
 import com.dotin.dao.LoanFileDao;
 
-/**
- * Servlet implementation class DeleteLoanFileControllerServlet
- */
+
 public class DeleteLoanFileControllerServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

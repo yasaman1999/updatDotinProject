@@ -49,6 +49,7 @@ public class LoanFileManagmentControllerServlet extends HttpServlet {
 	
 		
 		List<LoanFile> loanFiles = new ArrayList<LoanFile>();
+		List<LoanFile> notActiveloanFiles = new ArrayList<LoanFile>();
 		
 		LoanFileDao loanFileDao = LoanFileDao.getInstance();
 		List<LoanFile> loanFilesList = (List<LoanFile>) loanFileDao.getLoanFile(customerNumber,loanAmountFrom,loanAmountTo,loanPeriodFrom,loanPeriodTo);
@@ -59,9 +60,27 @@ public class LoanFileManagmentControllerServlet extends HttpServlet {
 				
 			
 			}
+		String select = (String) request.getParameter("id");
+		if (select != null) {
+		
+		List<LoanFile> notActiveloanFilesList = (List<LoanFile>) loanFileDao.getNotActiveLoanFile(customerNumber, loanAmountFrom, loanAmountTo, loanPeriodFrom, loanPeriodTo);
+		if(notActiveloanFilesList != null) {
+		for(int i=0;i < notActiveloanFilesList.size();i++) {
+			notActiveloanFiles.add(notActiveloanFilesList.get(i));
+				
+			}
+		}
+		
+		}
+		
+		long countActiveLoanFile = loanFileDao.countLoanFile(customerNumber, loanAmountFrom, loanAmountTo, loanPeriodFrom, loanPeriodTo);
+		long countNotActiveLoanFile = loanFileDao.countNotActiveLoanFile(customerNumber, loanAmountFrom, loanAmountTo, loanPeriodFrom, loanPeriodTo);
 		
 			HttpSession session = request.getSession();
 			session.setAttribute("loanFiles", loanFiles);
+			session.setAttribute("notActiveloanFiles", notActiveloanFiles);
+			request.setAttribute("countActiveLoanFile", countActiveLoanFile);
+			request.setAttribute("countNotActiveLoanFile", countNotActiveLoanFile);
 			request.setAttribute("customerNumber", customerNumber);
 			request.setAttribute("loanAmountFrom", loanAmountFrom);
 			request.setAttribute("loanAmountTo", loanAmountTo);
@@ -75,6 +94,7 @@ public class LoanFileManagmentControllerServlet extends HttpServlet {
 		}
 
 	}
+
 
 	
 

@@ -101,11 +101,6 @@ servletcontext.setAttribute("loanFileDetail", loanFileDetail);
 						</tr>	
 					</tbody>
 				</table>
-				<%-- <%
-				
-				request.setAttribute("loanFileDetail", loanFileDetail);
-				
-				%> --%>
 				<br><br>
 				<input
 					type="submit" value="غیر فعالسازی  پرونده" size="70"

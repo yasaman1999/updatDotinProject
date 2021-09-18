@@ -32,7 +32,16 @@
 .column2 {
 	align: right;
 	position: absolute;
-	top: 300px;
+	top: 350px;
+	padding: 1px;
+	height: 195px;
+	width: 99.5%;
+}
+
+.column3 {
+	align: right;
+	position: absolute;
+	top: 200px;
 	padding: 1px;
 	height: 195px;
 	width: 99.5%;
@@ -124,6 +133,17 @@ table.table2 th {
 	; style="background-repeat: no-repeat; background-size: cover; padding-top: 50px"; onload="init()">
 	<%
 		List loanFiles = (ArrayList) session.getAttribute("loanFiles");
+	List notActiveloanFiles = (ArrayList) session.getAttribute("notActiveloanFiles");
+	Long countActiveLoanFile =(Long) request.getAttribute("countActiveLoanFile");
+	if(countActiveLoanFile != null){
+		out.print(countActiveLoanFile + ":پرونده های فعال" );
+	}
+	out.print("<br/>");
+	Long countNotActiveLoanFile =(Long) request.getAttribute("countNotActiveLoanFile");
+	if(countNotActiveLoanFile != null){
+		out.print(countNotActiveLoanFile + ":پرونده های غیر فعال");
+	}
+
 	%>
 	<div>
 		<a href="loan-file.jsp"> <input type="submit" value="تشکیل پرونده"
@@ -131,11 +151,15 @@ table.table2 th {
 			style="text-align: center; font-family: courier; margin-left: 20%">
 		</a>
 	</div>
-	<div class="row">
-		<div class="column2"
+	
+	<br><br><br><br><br>
+
+	
+		<div class="column3"
 			style=" text-align: center; padding-top: 7%">
 			<form action="choose" method="get">
-				<table class="table2" id="newTable" style="overflow-y: scroll">
+				<table class="table2" id="newTable">
+				<caption style="text-align:center;font-family: courier">پرونده های فعال</caption>
 					<thead>
 						<tr>
 							<th>...</th>
@@ -171,9 +195,57 @@ table.table2 th {
 						%>
 					</tbody>
 				</table>
+				
+			</form>
+			</div>
+			
+		
+		
+		
+		<div class="column2"
+			style=" text-align: center; padding-top: 7%">
+			<form action="notactiveLoanFile" method="get">			
+				<table class="table2">
+				<caption style="text-align:center;font-family: courier">پرونده های غیر  فعال</caption>
+					<thead>
+						<tr>
+							<th>...</th>
+							<th>دوره</th>
+							<th>مبلغ</th>
+							<th>شماره مشتری</th>
+							<th>ردیف</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							if (notActiveloanFiles == null) {
+							}
+
+							else {
+
+								for (int i = 0; i < notActiveloanFiles.size(); i++) {
+						%>
+						<tr>
+							
+							<td><a
+								href="detail.jsp?contractPeriod=<%=((LoanFile) notActiveloanFiles.get(i)).getContractPeriod() %>&amount=<%=((LoanFile) notActiveloanFiles.get(i)).getAmount()%>&customerNumber<%=((LoanFile) notActiveloanFiles.get(i)).getAmount()%>&customerNumber=<%=((LoanFile) notActiveloanFiles.get(i)).getCustomer().getCustomerNumber()%>">انتخاب</a></td>
+							</td>
+							<td><%=((LoanFile) notActiveloanFiles.get(i)).getContractPeriod()%></td>
+							<td><%=((LoanFile) notActiveloanFiles.get(i)).getAmount()%></td>
+							<td><%=((LoanFile) notActiveloanFiles.get(i)).getCustomer().getCustomerNumber()%></td>
+							<td><%=i + 1%></td>
+
+						</tr>
+						<%
+							}
+							}
+						%>
+					</tbody>
+				</table>
 			</form>
 		</div>
-
+		
+		
 		<form action="search" method="get">
 			<div class="column1">
 				<table class="table1" align="right">
@@ -208,9 +280,14 @@ table.table2 th {
 							style="text-align: center; font-family: courier; margin-left: 90%">
 						</td>
 					</tr>
+					<tr>
+						<td style="padding-top: 20px; padding-bottom: 10px"><input type="checkbox" name="id" value="see" onchange="this.form.submit()" size="120" 
+							style="text-align: center; font-family: courier; margin-right: 90%">
+							<td>مشاهده پرونده های غیرفعال</td>
+						</td>
+					</tr>
 				</table>
+				</div>
 		</form>
-	</div>
-	</div>
 </body>
 </html>
